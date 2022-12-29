@@ -6,17 +6,17 @@
   - firstname: ["Francesc"]
     url: http://www.iri.upc.edu/people/fmoreno/
 
-"Sanfeliu":
-  - firstname: ["Alberto"]
-    url: http://www.iri.upc.edu/people/sanfeliu/
+#"Sanfeliu":
+#  - firstname: ["Alberto"]
+#    url: http://www.iri.upc.edu/people/sanfeliu/
 
 "Ruiz":
   - firstname: ["Adria"]
     url: https://scholar.google.es/citations?user=h5cFva0AAAAJ&hl=ca
 
-"Agudo":
-  - firstname: ["Antonio"]
-    url: http://www.iri.upc.edu/people/aagudo/
+#"Agudo":
+#  - firstname: ["Antonio"]
+#    url: http://www.iri.upc.edu/people/aagudo/
 
 
 
