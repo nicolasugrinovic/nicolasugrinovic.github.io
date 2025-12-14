@@ -203,6 +203,56 @@
           <table width="100%" align="center" border="0" cellspacing="0" cellpadding="smplx">
             <!-- <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0"> -->
             <tbody>
+              <tr onmouseout="sam3d_stop()" onmouseover="sam3d_start()">
+                <td width="30%">
+                  <div class="one">
+                    <div class="two" id="sam3d_image" style="opacity: 0;"><img width="100%"
+                        src="./Nicolas Ugrinovic_files/sam3dbody.png"></div>
+                    <img width="100%" src="./Nicolas Ugrinovic_files/sam3dbody.png">
+                  </div>
+                  <script type="text/javascript">
+                    function sam3d_start() {
+                      document.getElementById('sam3d_image').style.opacity = "1";
+                    }
+
+                    function sam3d_stop() {
+                      document.getElementById('sam3d_image').style.opacity = "0";
+                    }
+                    sam3d_stop()
+                  </script>
+                </td>
+                <td valign="top" width="70%">
+                  <papertitle>SAM 3D Body: Robust Full-Body Human Mesh Recovery</papertitle>
+                  <br>
+                  Xitong Yang,
+                  Devansh Kukreja,
+                  Don Pinkus,
+                  Anushka Sagar,
+                  Taosha Fan,
+                  Jinhyung Park,
+                  Soyong Shin,
+                  Jinkun Cao,
+                  Jiawei Liu,
+                  <strong>Nicolas Ugrinovic</strong>,
+                  Matt Feiszli,
+                  Jitendra Malik,
+                  Piotr Dollar,
+                  Kris Kitani
+                  <br>
+                  <em>arXiv</em>, 2025 &nbsp;
+                  <br>
+                  <a href="https://ai.meta.com/research/publications/sam-3d-body-robust-full-body-human-mesh-recovery/">paper</a>
+                  /
+                  <a href="https://ai.meta.com/sam3d/">project page</a>
+                  /
+                  <a href="https://github.com/facebookresearch/sam-3d-body">code</a>
+                  /
+                  <a href="">bibtex</a>
+                  <!--br-->
+                  <!--br-->
+                </td>
+              </tr>
+
               <tr onmouseout="multiphys_stop()" onmouseover="multiphys_start()">
                 <td width="30%">
                   <div class="one">
