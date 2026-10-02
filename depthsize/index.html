@@ -1,0 +1,115 @@
+
+<html>
+<head>
+
+<title>Nicolas Ugrinovic</title>
+<!--<link href="stylesheet.css" rel="stylesheet" type="text/css">
+-->
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script language="JavaScript">
+  function ShowHide(divId) {
+    $(divId).slideToggle(200);
+  }
+</script>
+</head>
+
+<body data-gr-c-s-loaded="true">
+
+<div class="container">
+
+<br />
+<br />
+<h1> Body Size and Depth Disambiguation in Multi-Person Reconstruction from Single Images </h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Nicolas Ugrinovic, 
+  <a href="https://www.iri.upc.edu/staff/aruiz/">Adria Ruiz</a>, 
+  <a href="http://www.iri.upc.edu/people/aagudo/"> Antonio Agudo</a>, 
+  <a href="http://www.iri.upc.edu/people/sanfeliu/">Alberto Sanfeliu</a>, 
+  <a href="http://www.iri.upc.edu/people/fmoreno/">Francesc Moreno-Noguer</a> </b> 
+</p>
+<br />
+
+<img src="teaser_w_caps.png" style="max-width:100%;">
+
+
+<br />
+<br />
+
+
+<h3>Abstract</h3>
+
+<br />
+
+
+<p>
+We address the problem of multi-person 3D body pose and shape estimation from a single image. While this problem  can be addressed by  applying  single-person approaches multiple times for the same scene, recent works have shown the advantages of building upon deep architectures that simultaneously reason about all  people in the scene in a holistic manner by enforcing, e.g., depth order constraints or minimizing  interpenetration among reconstructed bodies. However, existing approaches are still unable to capture the size variability of people caused by the inherent body scale and depth ambiguity. In this work, we tackle this challenge by devising a novel optimization scheme that learns the appropriate body scale and relative camera pose, by enforcing the feet of all people to remain on the ground floor. </p> <p>A thorough evaluation on MuPoTS-3D and 3DPW datasets demonstrates that our approach is able to robustly estimate the body translation and shape of multiple people while retrieving their spatial arrangement, consistently improving current state-of-the-art, especially in scenes with people of very different heights. Code can be found at: <a href="https://github.com/nicolasugrinovic/size_depth_disambiguation">https://github.com/nicolasugrinovic/size_depth_disambiguation</a>.
+</p>
+
+
+<br />
+<br />
+
+<h3>How does it work?</h3>
+
+<br />
+
+<p>
+We consider a novel constraint that estimates body scale and relative camera-body translation while enforcing the feet of all people to remain on the ground. We propose a simple but effective coarse-to-fine strategy where we first use any existing method to extract an initial estimation of the shape and pose of all people in the image. This estimate may contain gross errors. 
+We then extract the ground plane from the image using an off-the-shelf depth and semantic segmentation estimation network and compute the 3D normal direction of that plane. Finally, we devise a learning scheme, in which translation and scale parameters per person are optimized so as to minimize the feet-to-plane 3D distance and the 2D reprojection error.
+</p>
+
+<img src="architecture.png" style="max-width:100%;">
+
+<h3>Results</h3>
+
+<br />
+
+<p>
+
+We are able to successfully address the depth/size ambiguity intrinsic to all 3D reconstruction problems for the specific case of pose and shape estimation. Our method produces results with more realistic spatial arrangement than previous ones while capturing the diversity of body sizes. This yields improved depth ordering and better proportional distances among people in the scene when compared to other methods. 
+
+</p>
+
+<img src="qualitative_w_caps.png" style="max-width:100%;">
+<!--<img src="results_image.png" style="max-width:100%;">-->
+
+<h3>Publication</h3>
+
+<br />
+
+
+<div class="row"> <div class="col-md-3">
+<img style="width:280px;height:168px;" alt src="depthsize.png" style="width:80%; margin:10 px"> </div><div class="col-md-9"><h4><b>Body Size and Depth Disambiguation in Multi-Person Reconstruction from Single Images</b></h4><h5>N. Ugrinovic, A. Ruiz, A. Agudo, A. Sanfeliu, F. Moreno-Noguer</h5><h5>in <i>IEEE International Conference on 3D Vision (3DV), 2021 </i></h5><h5>
+</h5><h5> <b>(Oral presentation)</b></h5><h5> 
+<a href="https://nicolasugrinovic.github.io/depthsize/" >Project Page</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="paper.pdf" >Paper</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://github.com/nicolasugrinovic/size_depth_disambiguation" >Code</a>&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+</div></div>
+
+
+
+<h3>Citation</h3>
+<pre class='citation'>
+@article{ugrinovic2021depthsize,
+    Author = {Ugrinovic, Nicolas and Ruiz, Adria and Agudo, Antonio and Sanfeliu, Alberto and Moreno-Noguer, Francesc},
+    Title = {Body Size and Depth Disambiguation in Multi-Person Reconstruction from Single Images},
+    Year = {2021},
+    booktitle = {3DV},
+}
+</pre>
+
+</div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MultiPhys</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Nicolas Ugrinovic">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="style_project_page.css">
+    <link href="files/css.css" rel="stylesheet">
+    <link rel="stylesheet" href="files/font-awesome.min.css">
+    <link rel="stylesheet" href="files/academicons.min.css">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide/dist/css/glide.core.min.css"> -->
+    <script src="files/polyfill.min.js"></script>
+    <script id="MathJax-script" async="" src="files/tex-mml-chtml.js"></script>
+    <!-- <script src="https://unpkg.com/@glidejs/glide"></script> -->
+    <style type="text/css">
+        .side-text {
+            width: 60%;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .side-image {
+            width: 38%;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .controls {
+            margin-bottom: 10px;
+        }
+
+        .left-controls {
+            display: inline-block;
+            vertical-align: top;
+            width: 80%;
+        }
+
+        .right-controls {
+            display: inline-block;
+            vertical-align: top;
+            width: 19%;
+            text-align: right;
+        }
+
+        .render_window {
+            display: inline-block;
+            vertical-align: middle;
+            box-shadow: 1px 0px 5px black;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            width: calc(33% - 10px);
+        }
+
+        .progress {
+            background: #666;
+            position: relative;
+            height: 5px;
+            margin-bottom: -5px;
+            display: none;
+        }
+
+        .glide__slide:hover {
+            cursor: grab;
+        }
+
+        .glide__slide:active {
+            cursor: grabbing;
+        }
+
+        .glide__slide img {
+            width: 90%;
+        }
+
+        .glide__bullets {
+            text-align: center;
+        }
+
+        .glide__bullet--active {
+            color: #aaa;
+        }
+
+        @media (max-width: 400px) {
+            .render_window {
+                display: block;
+                width: 90%;
+                margin: 10px auto;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .side-image {
+                display: block;
+                width: 80%;
+                margin: 10px auto;
+            }
+
+            .side-text {
+                display: block;
+                width: 100%;
+            }
+        }
+    </style>
+    <style type="text/css">
+        .CtxtMenu_InfoClose {
+            top: .2em;
+            right: .2em;
+        }
+
+        .CtxtMenu_InfoContent {
+            overflow: auto;
+            text-align: left;
+            font-size: 80%;
+            padding: .4em .6em;
+            border: 1px inset;
+            margin: 1em 0px;
+            max-height: 20em;
+            max-width: 30em;
+            background-color: #EEEEEE;
+            white-space: normal;
+        }
+
+        .CtxtMenu_Info.CtxtMenu_MousePost {
+            outline: none;
+        }
+
+        .CtxtMenu_Info {
+            position: fixed;
+            left: 50%;
+            width: auto;
+            text-align: center;
+            border: 3px outset;
+            padding: 1em 2em;
+            background-color: #DDDDDD;
+            color: black;
+            cursor: default;
+            font-family: message-box;
+            font-size: 120%;
+            font-style: normal;
+            text-indent: 0;
+            text-transform: none;
+            line-height: normal;
+            letter-spacing: normal;
+            word-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            float: none;
+            z-index: 201;
+            border-radius: 15px;
+            /* Opera 10.5 and IE9 */
+            -webkit-border-radius: 15px;
+            /* Safari and Chrome */
+            -moz-border-radius: 15px;
+            /* Firefox */
+            -khtml-border-radius: 15px;
+            /* Konqueror */
+            box-shadow: 0px 10px 20px #808080;
+            /* Opera 10.5 and IE9 */
+            -webkit-box-shadow: 0px 10px 20px #808080;
+            /* Safari 3 & Chrome */
+            -moz-box-shadow: 0px 10px 20px #808080;
+            /* Forefox 3.5 */
+            -khtml-box-shadow: 0px 10px 20px #808080;
+            /* Konqueror */
+            filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true");
+            /* IE */
+        }
+    </style>
+    <style type="text/css">
+        .CtxtMenu_MenuClose {
+            position: absolute;
+            cursor: pointer;
+            display: inline-block;
+            border: 2px solid #AAA;
+            border-radius: 18px;
+            -webkit-border-radius: 18px;
+            /* Safari and Chrome */
+            -moz-border-radius: 18px;
+            /* Firefox */
+            -khtml-border-radius: 18px;
+            /* Konqueror */
+            font-family: "Courier New", Courier;
+            font-size: 24px;
+            color: #F0F0F0
+        }
+
+        .CtxtMenu_MenuClose span {
+            display: block;
+            background-color: #AAA;
+            border: 1.5px solid;
+            border-radius: 18px;
+            -webkit-border-radius: 18px;
+            /* Safari and Chrome */
+            -moz-border-radius: 18px;
+            /* Firefox */
+            -khtml-border-radius: 18px;
+            /* Konqueror */
+            line-height: 0;
+            padding: 8px 0 6px
+                /* may need to be browser-specific */
+        }
+
+        .CtxtMenu_MenuClose:hover {
+            color: white !important;
+            border: 2px solid #CCC !important
+        }
+
+        .CtxtMenu_MenuClose:hover span {
+            background-color: #CCC !important
+        }
+
+        .CtxtMenu_MenuClose:hover:focus {
+            outline: none
+        }
+    </style>
+    <style type="text/css">
+        .CtxtMenu_Menu {
+            position: absolute;
+            background-color: white;
+            color: black;
+            width: auto;
+            padding: 5px 0px;
+            border: 1px solid #CCCCCC;
+            margin: 0;
+            cursor: default;
+            font: menu;
+            text-align: left;
+            text-indent: 0;
+            text-transform: none;
+            line-height: normal;
+            letter-spacing: normal;
+            word-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            float: none;
+            z-index: 201;
+            border-radius: 5px;
+            /* Opera 10.5 and IE9 */
+            -webkit-border-radius: 5px;
+            /* Safari and Chrome */
+            -moz-border-radius: 5px;
+            /* Firefox */
+            -khtml-border-radius: 5px;
+            /* Konqueror */
+            box-shadow: 0px 10px 20px #808080;
+            /* Opera 10.5 and IE9 */
+            -webkit-box-shadow: 0px 10px 20px #808080;
+            /* Safari 3 & Chrome */
+            -moz-box-shadow: 0px 10px 20px #808080;
+            /* Forefox 3.5 */
+            -khtml-box-shadow: 0px 10px 20px #808080;
+            /* Konqueror */
+        }
+
+        .CtxtMenu_MenuItem {
+            padding: 1px 2em;
+            background: transparent;
+        }
+
+        .CtxtMenu_MenuArrow {
+            position: absolute;
+            right: .5em;
+            padding-top: .25em;
+            color: #666666;
+            font-family: null;
+            font-size: .75em
+        }
+
+        .CtxtMenu_MenuActive .CtxtMenu_MenuArrow {
+            color: white
+        }
+
+        .CtxtMenu_MenuArrow.CtxtMenu_RTL {
+            left: .5em;
+            right: auto
+        }
+
+        .CtxtMenu_MenuCheck {
+            position: absolute;
+            left: .7em;
+            font-family: null
+        }
+
+        .CtxtMenu_MenuCheck.CtxtMenu_RTL {
+            right: .7em;
+            left: auto
+        }
+
+        .CtxtMenu_MenuRadioCheck {
+            position: absolute;
+            left: .7em;
+        }
+
+        .CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {
+            right: .7em;
+            left: auto
+        }
+
+        .CtxtMenu_MenuInputBox {
+            padding-left: 1em;
+            right: .5em;
+            color: #666666;
+            font-family: null;
+        }
+
+        .CtxtMenu_MenuInputBox.CtxtMenu_RTL {
+            left: .1em;
+        }
+
+        .CtxtMenu_MenuComboBox {
+            left: .1em;
+            padding-bottom: .5em;
+        }
+
+        .CtxtMenu_MenuSlider {
+            left: .1em;
+        }
+
+        .CtxtMenu_SliderValue {
+            position: absolute;
+            right: .1em;
+            padding-top: .25em;
+            color: #333333;
+            font-size: .75em
+        }
+
+        .CtxtMenu_SliderBar {
+            outline: none;
+            background: #d3d3d3
+        }
+
+        .CtxtMenu_MenuLabel {
+            padding: 1px 2em 3px 1.33em;
+            font-style: italic
+        }
+
+        .CtxtMenu_MenuRule {
+            border-top: 1px solid #DDDDDD;
+            margin: 4px 3px;
+        }
+
+        .CtxtMenu_MenuDisabled {
+            color: GrayText
+        }
+
+        .CtxtMenu_MenuActive {
+            background-color: #606872;
+            color: white;
+        }
+
+        .CtxtMenu_MenuDisabled:focus {
+            background-color: #E8E8E8
+        }
+
+        .CtxtMenu_MenuLabel:focus {
+            background-color: #E8E8E8
+        }
+
+        .CtxtMenu_ContextMenu:focus {
+            outline: none
+        }
+
+        .CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {
+            outline: none
+        }
+
+        .CtxtMenu_SelectionMenu {
+            position: relative;
+            float: left;
+            border-bottom: none;
+            -webkit-box-shadow: none;
+            -webkit-border-radius: 0px;
+        }
+
+        .CtxtMenu_SelectionItem {
+            padding-right: 1em;
+        }
+
+        .CtxtMenu_Selection {
+            right: 40%;
+            width: 50%;
+        }
+
+        .CtxtMenu_SelectionBox {
+            padding: 0em;
+            max-height: 20em;
+            max-width: none;
+            background-color: #FFFFFF;
+        }
+
+        .CtxtMenu_SelectionDivider {
+            clear: both;
+            border-top: 2px solid #000000;
+        }
+
+        .CtxtMenu_Menu .CtxtMenu_MenuClose {
+            top: -10px;
+            left: -10px
+        }
+    </style>
+    <style id="MJX-CHTML-styles">
+        mjx-container[jax="CHTML"] {
+            line-height: 0;
+        }
+
+        mjx-container [space="1"] {
+            margin-left: .111em;
+        }
+
+        mjx-container [space="2"] {
+            margin-left: .167em;
+        }
+
+        mjx-container [space="3"] {
+            margin-left: .222em;
+        }
+
+        mjx-container [space="4"] {
+            margin-left: .278em;
+        }
+
+        mjx-container [space="5"] {
+            margin-left: .333em;
+        }
+
+        mjx-container [rspace="1"] {
+            margin-right: .111em;
+        }
+
+        mjx-container [rspace="2"] {
+            margin-right: .167em;
+        }
+
+        mjx-container [rspace="3"] {
+            margin-right: .222em;
+        }
+
+        mjx-container [rspace="4"] {
+            margin-right: .278em;
+        }
+
+        mjx-container [rspace="5"] {
+            margin-right: .333em;
+        }
+
+        mjx-container [size="s"] {
+            font-size: 70.7%;
+        }
+
+        mjx-container [size="ss"] {
+            font-size: 50%;
+        }
+
+        mjx-container [size="Tn"] {
+            font-size: 60%;
+        }
+
+        mjx-container [size="sm"] {
+            font-size: 85%;
+        }
+
+        mjx-container [size="lg"] {
+            font-size: 120%;
+        }
+
+        mjx-container [size="Lg"] {
+            font-size: 144%;
+        }
+
+        mjx-container [size="LG"] {
+            font-size: 173%;
+        }
+
+        mjx-container [size="hg"] {
+            font-size: 207%;
+        }
+
+        mjx-container [size="HG"] {
+            font-size: 249%;
+        }
+
+        mjx-container [width="full"] {
+            width: 100%;
+        }
+
+        mjx-box {
+            display: inline-block;
+        }
+
+        mjx-block {
+            display: block;
+        }
+
+        mjx-itable {
+            display: inline-table;
+        }
+
+        mjx-row {
+            display: table-row;
+        }
+
+        mjx-row>* {
+            display: table-cell;
+        }
+
+        mjx-mtext {
+            display: inline-block;
+        }
+
+        mjx-mstyle {
+            display: inline-block;
+        }
+
+        mjx-merror {
+            display: inline-block;
+            color: red;
+            background-color: yellow;
+        }
+
+        mjx-mphantom {
+            visibility: hidden;
+        }
+
+        _::-webkit-full-page-media,
+        _:future,
+        :root mjx-container {
+            will-change: opacity;
+        }
+
+        mjx-assistive-mml {
+            position: absolute !important;
+            top: 0px;
+            left: 0px;
+            clip: rect(1px, 1px, 1px, 1px);
+            padding: 1px 0px 0px 0px !important;
+            border: 0px !important;
+            display: block !important;
+            width: auto !important;
+            overflow: hidden !important;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        mjx-assistive-mml[display="block"] {
+            width: 100% !important;
+        }
+
+        mjx-c::before {
+            display: block;
+            width: 0;
+        }
+
+        .MJX-TEX {
+            font-family: MJXZERO, MJXTEX;
+        }
+
+        .TEX-B {
+            font-family: MJXZERO, MJXTEX-B;
+        }
+
+        .TEX-I {
+            font-family: MJXZERO, MJXTEX-I;
+        }
+
+        .TEX-MI {
+            font-family: MJXZERO, MJXTEX-MI;
+        }
+
+        .TEX-BI {
+            font-family: MJXZERO, MJXTEX-BI;
+        }
+
+        .TEX-S1 {
+            font-family: MJXZERO, MJXTEX-S1;
+        }
+
+        .TEX-S2 {
+            font-family: MJXZERO, MJXTEX-S2;
+        }
+
+        .TEX-S3 {
+            font-family: MJXZERO, MJXTEX-S3;
+        }
+
+        .TEX-S4 {
+            font-family: MJXZERO, MJXTEX-S4;
+        }
+
+        .TEX-A {
+            font-family: MJXZERO, MJXTEX-A;
+        }
+
+        .TEX-C {
+            font-family: MJXZERO, MJXTEX-C;
+        }
+
+        .TEX-CB {
+            font-family: MJXZERO, MJXTEX-CB;
+        }
+
+        .TEX-FR {
+            font-family: MJXZERO, MJXTEX-FR;
+        }
+
+        .TEX-FRB {
+            font-family: MJXZERO, MJXTEX-FRB;
+        }
+
+        .TEX-SS {
+            font-family: MJXZERO, MJXTEX-SS;
+        }
+
+        .TEX-SSB {
+            font-family: MJXZERO, MJXTEX-SSB;
+        }
+
+        .TEX-SSI {
+            font-family: MJXZERO, MJXTEX-SSI;
+        }
+
+        .TEX-SC {
+            font-family: MJXZERO, MJXTEX-SC;
+        }
+
+        .TEX-T {
+            font-family: MJXZERO, MJXTEX-T;
+        }
+
+        .TEX-V {
+            font-family: MJXZERO, MJXTEX-V;
+        }
+
+        .TEX-VB {
+            font-family: MJXZERO, MJXTEX-VB;
+        }
+
+        mjx-stretchy-v mjx-c,
+        mjx-stretchy-h mjx-c {
+            font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+        }
+
+        @font-face
+
+        /* 0 */
+            {
+            font-family: MJXZERO;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 1 */
+            {
+            font-family: MJXTEX;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 2 */
+            {
+            font-family: MJXTEX-B;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 3 */
+            {
+            font-family: MJXTEX-I;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 4 */
+            {
+            font-family: MJXTEX-MI;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 5 */
+            {
+            font-family: MJXTEX-BI;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 6 */
+            {
+            font-family: MJXTEX-S1;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 7 */
+            {
+            font-family: MJXTEX-S2;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 8 */
+            {
+            font-family: MJXTEX-S3;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 9 */
+            {
+            font-family: MJXTEX-S4;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 10 */
+            {
+            font-family: MJXTEX-A;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 11 */
+            {
+            font-family: MJXTEX-C;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 12 */
+            {
+            font-family: MJXTEX-CB;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 13 */
+            {
+            font-family: MJXTEX-FR;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 14 */
+            {
+            font-family: MJXTEX-FRB;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 15 */
+            {
+            font-family: MJXTEX-SS;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 16 */
+            {
+            font-family: MJXTEX-SSB;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 17 */
+            {
+            font-family: MJXTEX-SSI;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 18 */
+            {
+            font-family: MJXTEX-SC;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 19 */
+            {
+            font-family: MJXTEX-T;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 20 */
+            {
+            font-family: MJXTEX-V;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 21 */
+            {
+            font-family: MJXTEX-VB;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+        }
+    </style>
+</head>
+
+<body data-new-gr-c-s-check-loaded="8.911.0" data-gr-ext-installed="">
+    <div class="section">
+        <h1 class="project-title">
+            MultiPhys: Multi-Person Physics-aware 3D Motion Estimation
+        </h1>
+        <div class="authors">
+            <!-- <a href="https://nicolasugrinovic.github.io/"> -->
+            <a href="https://nicolasugrinovic.github.io/">
+                Nicolas Ugrinovic<sup>1</sup>
+            </a>
+            <a href="https://cs.stanford.edu/~bxpan/">
+                Boxiao Pan<sup>2</sup>
+            </a>
+            <a href="https://geopavlakos.github.io/">
+                Georgios Pavlakos<sup>3</sup>
+            </a>
+            <a href="https://paschalidoud.github.io/">
+                Despoina Paschalidou<sup>2</sup>
+            </a>
+            <a href="https://cs.stanford.edu/people/bshen88/">
+                Bokui Shen<sup>2</sup>
+            </a>
+            <br>
+            <a href="https://www.iri.upc.edu/staff/jsanchez">
+                Jordi Sanchez-Riera<sup>1</sup>
+            </a>
+            <a href="http://www.iri.upc.edu/people/fmoreno/">
+                Francesc Moreno-Noguer<sup>1</sup>
+            </a>
+            <a href="https://geometry.stanford.edu/member/guibas/">
+                Leonidas Guibas<sup>2</sup>
+            </a>
+        </div>
+
+        <div class="affiliations">
+            <span><sup>1</sup> IRI-UPC </span> 
+            <span><sup>2</sup> Stanford University</span> 
+            <span><sup>3</sup> University of Berkeley</span> 
+        </div>
+
+        <div class="project-conference">
+            CVPR 2024
+        </div>
+
+        <div class="project-icons">
+            <a href="https://arxiv.org/pdf/2404.11987.pdf">
+                <!-- <i class="fa fa-file"></i> -->
+                <img style="width:36px;height:36px" src="HaMeR_files/paper.png" alt="Paper">
+                <!-- <img style="width:36px;height:36px" src="figures/documents.png" alt="Paper"> -->
+
+                Paper
+            </a>
+            <a href="paper/CVPR_2024_Physics_Human_Pose-supplementary.pdf">
+                <!-- <i class="fa fa-youtube-play"></i> <br> -->
+                <!-- <img style="width:36px;height:36px" src="HaMeR_files/paper.png" alt="Paper"> -->
+                <img style="width:36px;height:36px" src="figures/paper.png" alt="Paper">
+                Supplementary
+            </a>
+            <a href="https://github.com/nicolasugrinovic/multiphys">
+                <!-- <i class="fa fa-github"></i> <br> -->
+                <img style="width:36px;height:36px" src="HaMeR_files/github-mark.svg" alt="Github code">
+                Code <br><small><small></small></small>
+            </a>
+        </div>
+
+
+        <div class="section-title"></div>
+        <!-- <div class="teaser-image">
+                <center>
+                <iframe width="850" height="478" src="https://www.youtube.com/embed/oQt6xSNxm0A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </center>
+            </div> -->
+        <div class="teaser-image">
+            <center>
+                <!-- <img src="img/teaser.png" style="width:100%;"> -->
+                <!-- <iframe width="850" height="478" src="files/225c52QDkzg.html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe> -->
+                <video class="centered" width="80%" controls="controls" muted="muted" autoplay loop="">
+                    <source src="figures/inter-penet_mark.mp4" type="video/mp4">
+                </video> 
+                <td width="200px" class="caption">We present MultiPhys, a method that enables recovering multi-person 3D motion in a physically-aware
+                    manner. State-of-the-art methods (SLAHMR, top row) for multi-person motion recovery
+                    mostly rely on kinematic approaches, which typically ignore physical constraints, such as
+                    body penetration. Moreover, individual poses are kinematically coherent, their spatial
+                    placement is suboptimal, resulting in significant penetration errors. MultiPhys (bottom row)
+                    incorporates physics constraints into the reconstruction process, yielding more physically
+                    plausible results.</td>
+             </center> 
+
+                <!-- <figure style="width: 100%;">
+                    <img src="figures/teaser_cam_ready.png" style="width:100%;">
+                        <td width="200px" class="caption">We present MultiPhys, a method that enables recovering multi-person 3D motion in a physically-aware
+                            manner. State-of-the-art methods (SLAHMR, top row) for multi-person motion recovery
+                            mostly rely on kinematic approaches, which typically ignore physical constraints, such as
+                            body penetration. Moreover, individual poses are kinematically coherent, their spatial
+                            placement is suboptimal, resulting in significant penetration errors. MultiPhys (bottom row)
+                            incorporates physics constraints into the reconstruction process, yielding more physically
+                            plausible results.</td> -->
+                <!-- </figure> -->
+        </div>
+        <div class="section-title">Abstract</div>
+        <div class="content">
+            <p>
+                We introduce MultiPhys, a method designed for recovering multi-person motion from monocular videos. Our
+                focus lies in capturing coherent spatial placement between pairs of individuals across varying degrees
+                of engagement. MultiPhys, being physically aware, exhibits robustness to jittering and occlusions, and
+                effectively eliminates penetration issues between the two individuals. We devise a pipeline in which the
+                motion estimated by a kinematic-based method is fed into a physics simulator in an autoregressive
+                manner. We introduce distinct components that enable our model to harness the simulator’s properties
+                without compromising the accuracy of the kinematic estimates. This results in final motion estimates
+                that are both kinematically coherent and physically compliant. Extensive evaluations on three
+                challenging datasets characterized by substantial inter-person interaction show that our method
+                significantly reduces errors associated with penetration and foot skating, while performing
+                competitively with the state-of-the-art on motion accuracy and smoothness.
+            </p>
+        </div>
+        <br><br>
+        <div class="section-title">Overview Video</div>
+        <div class="content">
+            <video class="centered" width="80%" controls="controls" muted="muted" loop="">
+                <source src="figures/multiphys.mp4" type="video/mp4">
+            </video>
+            <center>* Best viwed with AUDIO</center>
+            
+        </div>
+        <br><br>
+        <div class="section-title">Approach</div>
+        <div class="content">
+            <p>
+                Given an input video with multiple people (left), we first obtain initial kinematic estimates of the
+                camera poses and 3D human motion using SLAHMR. Using these initial motion estimates, our proposed
+                framework corrects them and makes them physically plausible (right).
+                <!-- <img src="figures/figure_2.png" style="width:100%;"> -->
+            <figure style="width: 100%;">
+                <img src="figures/figure_2.png" style="width:100%;">
+                <center>
+                    <p class="caption" style="text-align:center">Pipeline.</p>
+                </center>
+            </figure>
+            <!-- <center><p class="caption">HuMoR conditional variational autoencoder architecture.</p></center> -->
+            <br><br>
+            <p>
+            We use the policy π to control the humanoid agents with the initial
+            kinematic poses. We simulate all agents simultaneously in order to apply physics-based constraints to
+            the reconstructed motion. The policy computes features from both the current state of the simulation and
+            the target pose to later generate the action signal a that controls the agents. We place our loop-N
+            component between target poses that correspond to each video frame.
+            </p>
+            <figure style="width: 100%;">
+                <img src="figures/figure_3.png" style="width:80%;">
+                <center>
+                    <p class="caption" style="text-align:center">Physics-aware Correction Module.</p>
+                </center>
+            </figure>
+            </p>
+        </div>
+
+        <br><br>
+        <div class="section-title">Results on ExPi, Hi4D, and CHI3D datasets</div>
+        <div class="content">
+            <figure style="width: 49.5%;">
+                <video class="centered" width="100%" controls="controls" muted="muted" loop="" autoplay="autoplay">
+                    <source src="figures/results_expi.mp4" type="video/mp4">
+                </video>
+                <center>
+                    <br>
+                    <p class="caption" style="text-align:center">Results on ExPi dataset.</p>
+                </center>
+            </figure>
+            <figure style="width: 49.5%;">
+                <video class="centered" width="100%" controls="controls" muted="muted" loop="" autoplay="autoplay">
+                    <source src="figures/results_hi4d.mp4" type="video/mp4">
+                </video>
+                <center>
+                    <br>
+                    <p class="caption" style="text-align:center">Results on Hi4D dataset.</p>
+                </center>
+            </figure>
+            <br><br>
+            </figure>
+            <center>
+                <figure style="width: 49.5%;">
+                    <video class="centered" width="100%" controls="controls" muted="muted" loop="" autoplay="autoplay">
+                        <source src="figures/resuts_chi3d.mp4" type="video/mp4">
+                    </video>
+                    <center>
+                        <br>
+                        <p class="caption" style="text-align:center">Results on CHI3D dataset.</p>
+                    </center>
+                </figure>
+            </center>
+            <br><br>
+        </div>
+
+
+        <div class="section-title">Results with more people</div>
+        <div class="content">
+            </figure>
+            <center>
+                <figure style="width: 90.5%;">
+                    <video class="centered" width="100%" controls="controls" muted="muted" loop="" autoplay="autoplay">
+                        <source src="figures/mupots_stripped.mp4" type="video/mp4">
+                    </video>
+                    <center>
+                        <p class="caption" style="text-align:center">Results with 3 people.</p>
+                    </center>
+                </figure>
+            </center>
+            <br><br>
+            </figure>
+            <center>
+                <figure style="width: 90.5%;">
+                    <video class="centered" width="100%" controls="controls" muted="muted" loop="" autoplay="autoplay">
+                        <source src="figures/mpii_stripped_c.mp4" type="video/mp4">
+                    </video>
+                    <center>
+                        <p class="caption" style="text-align:center">Results with 4 people.</p>
+                    </center>
+                </figure>
+            </center>
+            <br><br>
+        </div>
+
+        <div class="section-title">Citation</div>
+        <div class="section bibtex">
+            <pre>@inproceedings{ugrinovic2024multiphys,
+                author={Ugrinovic, Nicolas and Pan, Boxiao and Pavlakos, Georgios and Paschalidou, Despoina and Shen, Bokui and Sanchez-Riera, Jordi and Moreno-Noguer, Francesc and Guibas, Leonidas},
+                title={MultiPhys: Multi-Person Physics-aware 3D Motion Estimation},
+                booktitle={Conference on Computer Vision and Pattern Recognition (CVPR)},
+                year={2024}
+}            </pre>
+        </div>
+        <br>
+        <div class="section-title">Acknowledgments</div>
+        <div class="content">
+            Despoina Paschalidou is supported by the Swiss National Science Foundation under grant number P500PT 206946.
+            Leonidas Guibas is supported by a Vannevar Bush Faculty Fellowship. This work is partially supported by
+            projects SMARTGAZEII CPP2021-008760 and MoHuCo PID2020-120049RB-I00.
+            <!-- <br> -->
+            This project page template is based on <a
+                href="https://research.nvidia.com/labs/toronto-ai/trace-pace/">this
+                page</a>. Icons: <a href="https://www.flaticon.com/free-icons/paper" title="paper icons">Flaticon</a>
+        </div>
+        <br>
+        <div class="section-title">Contact</div>
+        <div class="content">
+            For any questions, please contact <a href="mailto:nugrinovic@iri.upc.edu">Nicolas Ugrinovic</a>.
+        </div>
+    </div>
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+
+</html>
