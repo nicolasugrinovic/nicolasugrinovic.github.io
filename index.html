@@ -45,9 +45,11 @@
 
     papertitle {
       font-family: 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
       font-style: italic;
+      display: inline-block;
+      margin-bottom: 6px;
     }
 
     name {
@@ -111,6 +113,27 @@
     .publications-table tbody tr + tr td {
       padding-top: 2px;
     }
+
+    .publications-table tbody tr td {
+      padding-bottom: 14px;
+    }
+
+    .publications-table tbody tr td:first-child {
+      width: 230px;
+    }
+
+    .publications-table tbody tr td:last-child {
+      width: auto;
+    }
+
+    .venue-gap {
+      display: block;
+      height: 4px;
+    }
+
+    .publications-table .one {
+      height: auto;
+    }
   </style>
   <title>Nicolas Ugrinovic</title>
   <!-- <link rel="apple-touch-icon" sizes="180x180" href="https://www.utexas.edu/apple-touch-icon.png"> -->
@@ -123,7 +146,7 @@
 </head>
 
 <body data-new-gr-c-s-check-loaded="8.912.0" data-gr-ext-installed="">
-  <table width="800" border="0" align="center" cellspacing="0" cellpadding="0">
+  <table width="900" border="0" align="center" cellspacing="0" cellpadding="0">
     <tbody>
       <tr>
         <td>
@@ -138,7 +161,7 @@
                   <p>
                     I am a Postdoctoral Researcher at Carnegie Mellon University, where I work with <a
                       href="https://kriskitani.github.io/">Kris Kitani</a>.
-                    Previously, I worked at Meta (FAIR).
+                    Previously, I worked at <a href="https://ai.meta.com/research/">Meta (FAIR)</a>.
                   </p>
                   <p>
                     I obtained my
@@ -187,7 +210,7 @@
                   <heading>News</heading>
                   <ul>
                     <li><span> <b>Nov. 2025</b> Our work SAM 3D Body is now published!</span></li>
-                    <li><span> <b>May. 2025</b> Joined Meta (FAIR) as a Postdoc in Menlo Park, USA!</span></li>
+                    <li><span> <b>May. 2025</b> Joined <a href="https://ai.meta.com/research/">Meta (FAIR)</a> as a Postdoc in Menlo Park, USA!</span></li>
                     <li><span> <a href="http://www.iri.upc.edu/people/nugrinovic/multiphys/">MultiPhys</a> accepted to
                         CVPR 2024! </span></li>
                     <li><span> <b>Nov. 2023</b> Started an internship at <a href="https://www.amazon.science/">Amazon
@@ -215,6 +238,73 @@
             <tbody>
               <tr>
                 <td width="100%" valign="middle">
+                  <heading>Preprints</heading>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="publications-table" width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr>
+                <td width="30%">
+                  <div class="one">
+                    <img width="100%" src="./Nicolas Ugrinovic_files/snap3d_teaser.jpg">
+                  </div>
+                </td>
+                <td valign="top" width="70%">
+                  <papertitle>SNAP3D: Physically Grounded 3D Parts for Assembly from a Single Image</papertitle>
+                  <br>
+                  Yu-Rou Tuan,
+                  Hao-Tang Tsui,
+                  <strong>Nicolas Ugrinovic</strong>,
+                  Kris Kitani,
+                  Xiaoxuan Ma
+                  <br>
+                  <em>arXiv</em>, 2026
+                  <br>
+                  <span class="venue-gap"></span>
+                  <a href="https://arxiv.org/abs/2609.13146">paper</a>
+                  /
+                  <a href="https://lucytuan.github.io/SNAP3D/">project page</a>
+                  /
+                  <a href="https://github.com/LucyTuan/SNAP3D">code</a>
+                </td>
+              </tr>
+
+              <tr>
+                <td width="30%">
+                  <div class="one">
+                    <img width="100%" src="./Nicolas Ugrinovic_files/point2part_teaser.jpg">
+                  </div>
+                </td>
+                <td valign="top" width="70%">
+                  <papertitle>Point2Part: Unified 3D Partitioning From Point Prompts</papertitle>
+                  <br>
+                  Hao-Tang Tsui,
+                  Yu-Rou Tuan,
+                  Xiaoxuan Ma,
+                  <strong>Nicolas Ugrinovic</strong>,
+                  Takaaki Shiratori,
+                  Kris Kitani
+                  <br>
+                  <em>arXiv</em>, 2026
+                  <br>
+                  <span class="venue-gap"></span>
+                  <a href="https://arxiv.org/abs/2609.38180">paper</a>
+                  /
+                  <a href="https://henrytsui000.github.io/Point2Part/">project page</a>
+                  /
+                  <a href="https://github.com/henrytsui000/Point2Part">code</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+            <tbody>
+              <tr>
+                <td width="100%" valign="middle">
                   <heading>Publications</heading>
                 </td>
               </tr>
@@ -223,6 +313,56 @@
 
           <table class="publications-table" width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
             <tbody>
+              <tr>
+                <td width="30%">
+                  <div style="width: 200px;"><video width="100%" src="./Nicolas Ugrinovic_files/rest3d.mp4" autoplay muted loop playsinline></video></div>
+                </td>
+                <td valign="top" width="70%">
+                  <papertitle>REST3D: Reconstructing Physically Stable 3D Scenes from a Single Image</papertitle>
+                  <br>
+                  Xiaoxuan Ma,
+                  Jiashun Wang,
+                  <strong>Nicolas Ugrinovic</strong>,
+                  Yehonathan Litman,
+                  Kris Kitani
+                  <br>
+                  <em>SIGGRAPH Asia</em>, 2026 &nbsp;
+                  <br>
+                  <span class="venue-gap"></span>
+                  <a href="https://arxiv.org/abs/2605.30338">paper</a>
+                  /
+                  <a href="https://ShirleyMaxx.github.io/REST3D/">project page</a>
+                  /
+                  <a href="https://github.com/ShirleyMaxx/REST3D/">code</a>
+                </td>
+              </tr>
+
+              <tr>
+                <td width="30%">
+                  <div style="width: 200px;"><video width="100%" src="./Nicolas Ugrinovic_files/lift4d.mp4" autoplay muted loop playsinline></video></div>
+                </td>
+                <td valign="top" width="70%">
+                  <papertitle>Lift4D: Harmonizing Single-View 3D Estimation for 4D Reconstruction In-the-Wild</papertitle>
+                  <br>
+                  Yehonathan Litman,
+                  Xiaoxuan Ma,
+                  Manan Shah,
+                  <strong>Nicolas Ugrinovic</strong>,
+                  Kris Kitani,
+                  Fernando De la Torre,
+                  Shubham Tulsiani
+                  <br>
+                  <em>SIGGRAPH Asia</em>, 2026 &nbsp;
+                  <br>
+                  <span class="venue-gap"></span>
+                  <a href="https://arxiv.org/abs/2606.23688">paper</a>
+                  /
+                  <a href="https://lift4d.github.io/">project page</a>
+                  /
+                  <a href="https://github.com/yehonathanlitman/Lift4D/">code</a>
+                </td>
+              </tr>
+
               <tr onmouseout="sam3d_stop()" onmouseover="sam3d_start()">
                 <td width="30%">
                   <div class="one">
@@ -259,8 +399,9 @@
                   Piotr Dollar,
                   Kris Kitani
                   <br>
-                  <em>arXiv</em>, 2025 &nbsp;
+                  <em>Computer Vision and Pattern Recognition (CVPR)</em>, 2026&nbsp; <font color="red"><strong>(Award Nominee)</strong></font>
                   <br>
+                  <span class="venue-gap"></span>
                   <a href="https://ai.meta.com/research/publications/sam-3d-body-robust-full-body-human-mesh-recovery/">paper</a>
                   /
                   <a href="https://ai.meta.com/sam3d/">project page</a>
@@ -304,6 +445,7 @@
                   <br>
                   <em>Computer Vision and Pattern Recognition (CVPR)</em>, 2024 &nbsp;
                   <br>
+                  <span class="venue-gap"></span>
                   <a href="https://arxiv.org/abs/2404.11987">paper</a>
                   /
                   <a href="https://www.iri.upc.edu/people/nugrinovic/multiphys/">project page</a>
@@ -344,6 +486,7 @@
                   <br>
                   <em>IEEE International Conference on 3D Vision (3DV)</em>, 2024 &nbsp;
                   <br>
+                  <span class="venue-gap"></span>
                   <a href="https://arxiv.org/abs/2404.12942">paper</a>
                   /
                   <a href="https://www.iri.upc.edu/people/nugrinovic/purposer/">project page</a>
@@ -386,6 +529,7 @@
                   <em>IEEE International Conference on 3D Vision (3DV)</em>, 2021&nbsp; <font color="red"><strong>(Oral
                       Presentation)</strong></font>
                   <br>
+                  <span class="venue-gap"></span>
                   <a href="https://arxiv.org/abs/2111.01884">paper</a>
                   /
                   <a href="https://www.iri.upc.edu/people/nugrinovic/depthsize/">project page</a>
@@ -397,6 +541,28 @@
               </tr>
 
 
+
+              <tr>
+                <td width="30%">
+                  <div class="one">
+                    <img width="100%" src="./Nicolas Ugrinovic_files/permutation.png">
+                  </div>
+                </td>
+                <td valign="top" width="70%">
+                  <papertitle>Permutation-Invariant Relational Network for Multi-person 3D Pose Estimation</papertitle>
+                  <br>
+                  <strong>Nicolas Ugrinovic</strong>,
+                  Adria Ruiz,
+                  Antonio Agudo,
+                  Alberto Sanfeliu,
+                  Francesc Moreno-Noguer
+                  <br>
+                  <em>Int. Conf. on Computer Vision Theory and Applications (VISAPP)</em>, 2022
+                  <br>
+                  <span class="venue-gap"></span>
+                  <a href="https://arxiv.org/pdf/2204.04913">paper</a>
+                </td>
+              </tr>
 
               <tr onmouseout="depth_stop()" onmouseover="depth_start()">
                 <td width="30%">
@@ -427,12 +593,12 @@
                   <em>Int. Conf. on Computer Vision Theory and Applications (VISAPP)</em>, 2021&nbsp; <font color="red">
                     <strong>(Oral Presentation)</strong></font>
                   <br>
+                  <span class="venue-gap"></span>
                   <a href="https://arxiv.org/abs/2205.04087">paper</a>
                   /
                   <a href="http://www.iri.upc.edu/people/nugrinovic/files/ugrinovic2021depthsize.bib">bibtex</a>
                 </td>
               </tr>
-
 
             </tbody>
           </table>
@@ -446,7 +612,7 @@
                 <td style="padding:20px;width:100%;vertical-align:middle">
                   <heading>Academic Services</heading>
                   <ul>
-                    <li><span> Serve as reviewer for ECCV, CVPR, ICRA, NeurIPS</span></li>
+                    <li><span> Serve as reviewer for ECCV, CVPR, ICRA, NeurIPS, ICLR, 3DV</span></li>
 
                   </ul>
                 </td>
